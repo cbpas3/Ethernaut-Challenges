@@ -1,0 +1,3 @@
+# Ethernaut Challenge 16: Preservation
+
+This Ethernaut challenge, in order to get ownership of the contract requires that we change the address on storage slot 0 and to our Attacker contract that changes the owner on storage slot 2. We can do this because the proxy contract's storage layout doesn't match the implementation contract's storage layout and delegatecall is used by the proxy contract that keeps the storage context of the proxy contract. The line `contract.setFirstTime(web3.utils.toBN('0x7F2788e9D1cE7D9f6FD51382F88539AA21c61708'))` is used on the console to change the address on storage slot 0 to our Attacker contract and then our Attacker contract, which has the same storage layout as the proxy contract has a function that changes the owner to our address.
